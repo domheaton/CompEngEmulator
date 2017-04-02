@@ -1,0 +1,96 @@
+Welcome to the Data Logger.
+
+Instruction Meanings:
+00 = Addition
+01 = Subtraction
+10 = Multiplication
+11 = Division
+
+System has Started...
+
+PC          : 0
+Raw Memory  : 0000010001
+Instruction : 00
+Operand A   : 0001
+Operand B   : 0001
+Value Stored: 0000000010
+
+PC          : 1
+Raw Memory  : 0001010101
+Instruction : 00
+Operand A   : 0101
+Operand B   : 0101
+Value Stored: 0000001010
+
+PC          : 2
+Raw Memory  : 0010101010
+Instruction : 00
+Operand A   : 1010
+Operand B   : 1010
+Value Stored: 0000000100
+OVERFLOW HAS OCCURED!
+
+PC          : 3
+Raw Memory  : 0100100001
+Instruction : 01
+Operand A   : 0010
+Operand B   : 0001
+Value Stored: 0000000001
+
+PC          : 4
+Raw Memory  : 0101100101
+Instruction : 01
+Operand A   : 0110
+Operand B   : 0101
+Value Stored: 0000000001
+
+PC          : 5
+Raw Memory  : 0110111010
+Instruction : 01
+Operand A   : 1011
+Operand B   : 1010
+Value Stored: 0000000001
+
+PC          : 6
+Raw Memory  : 1000010001
+Instruction : 10
+Operand A   : 0001
+Operand B   : 0001
+Value Stored: 0000000001
+
+PC          : 7
+Raw Memory  : 1000100001
+Instruction : 10
+Operand A   : 0010
+Operand B   : 0001
+Value Stored: 0000000010
+
+PC          : 8
+Raw Memory  : 1000100010
+Instruction : 10
+Operand A   : 0010
+Operand B   : 0010
+Value Stored: 0000000100
+
+PC          : 9
+Raw Memory  : 1100010001
+Instruction : 11
+Operand A   : 0001
+Operand B   : 0001
+Value Stored: 0000000001
+
+PC          : 10
+Raw Memory  : 1100010001
+Instruction : 11
+Operand A   : 0001
+Operand B   : 0001
+Value Stored: 0000000001
+
+PC          : 11
+Raw Memory  : 1100100001
+Instruction : 11
+Operand A   : 0010
+Operand B   : 0001
+Value Stored: 0000000010
+
+System has Finished.
