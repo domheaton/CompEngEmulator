@@ -43,17 +43,8 @@ void DECODER::setDataFromMem(const string & data)
 
 void DECODER::runDecoder()
 {
-	//DECODER decoder;
-
-	//fetch from memory |--2 bit instruction--4 bit operand--4 bit operand--return address--|
-	// string dataFromMem = "0010100010";
-
 	//place data into correct variables for ALU
-	//cout << "Setting data in decoder" << endl;
 	setIR(dataFromMem);
 	setOperandA(dataFromMem);
 	setOperandB(dataFromMem);
-
-	//send to ALU and IR
-
 }

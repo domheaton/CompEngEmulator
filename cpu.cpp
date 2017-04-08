@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////
 /*
 Module: cpu.cpp
-
+ 
 Author: Dominic Heaton
 UoS - 2777 9009
 dhh1g15@soton.ac.uk
@@ -58,7 +58,6 @@ int main()
 	 	getline(file, tempData);
 		memory.memWrite(noOfInstructions, tempData);
 	}
-	//cout << "FILE TEST: " << memory.getReg(2) << endl << endl;
 	file.close();
 	cout << "Data read. Preparing..." << endl << endl;
 
@@ -68,11 +67,7 @@ int main()
 	pc.resetPC();
 	cout << "PC is now reset = " << pc.getPC() << endl << endl;
 
-	//Test strings before reading from separate file
-	// string testinput = "0011100001";
-	// memory.memWrite(pc.getPC(), testinput);
-	// cout << "Loaded test string " << testinput << " into memory" << endl << endl;
-
+	//Start up the Data-logger
 	ofstream dataLog;
 	dataLog.open("DataLogger.txt");
 	dataLog << "Welcome to the Data Logger." << endl << endl << "Instruction Meanings:" << endl;
@@ -80,8 +75,10 @@ int main()
 	dataLog << "10 = Multiplication" << endl << "11 = Division" << endl << endl;
 	dataLog << "System has Started..." << endl << endl;
 
+	//While loop to execute every instruction in the memory
 	while(pc.getPC()<noOfInstructions)
 	{
+		//Print current state of Program Counter
 		cout << "PC = " << pc.getPC() << endl << endl;
 
 		//FETCH - Fetches instruction from Memory & increments PC
@@ -107,7 +104,7 @@ int main()
 	 	cout << "Accumulator ready to receive..." << endl;
 	 	accumulator.setAcc(alu.getResult());
 	 	//cout << accumulator.getAcc() << endl; 
-	 	cout << "Accumulator has finished" << endl;
+	 	cout << "Accumulator has finished" << endl << endl;
 
 	 	//WRITE-BACK - Returns ACC to Memory where it came from
 	 	returnToMem = blank + accumulator.getAcc(); //converts to 10bits with 4LSB being the result
@@ -132,6 +129,7 @@ int main()
 			dataLog << endl;
 		}
  	}
+ 	//close the data-logger
  	dataLog << "System has Finished.";
  	dataLog.close();
 

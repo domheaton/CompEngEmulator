@@ -17,11 +17,11 @@ a flag will warn of any overflow.
 #include "alu.h"
 
 //Initialisation of Variables
-string inputA = "0000"; 		//DO NOT CHANGE
-string inputB = "0000";			//DO NOT CHANGE
-string instruction = "00";		//DO NOT CHANGE
-string resultString = "0000";	//DO NOT CHANGE
-bool overflow = 0;				//DO NOT CHANGE
+string inputA = "0000"; 
+string inputB = "0000";		
+string instruction = "00";		
+string resultString = "0000";	
+bool overflow = 0;				
 
 void ALU::setInputA(const string & a)	//set ALU input A
 {
@@ -85,15 +85,8 @@ void ALU::calculate()	//carry out the ALU operation
 
 void ALU::runALU()
 {
-	//ALU alu;	//instance of the ALU
-
-	//NEED TO BE SET FROM THE INSTRUCTION DECODER
-	//string a = "1010";	//local ALU input A
-	//string b = "0010";	//local ALU input B
-	//string inst = "00"; //local ALU instruction
-
-	//cout << "A Value is: " << getInputA() << endl;
-	//cout << "B Value is: " << getInputB() << endl;
+	cout << "A Value is: " << getInputA() << endl;
+	cout << "B Value is: " << getInputB() << endl;
 
 	calculate(); //Runs the ALU to find answer
 	if(overflow)
