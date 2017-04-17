@@ -8,8 +8,17 @@ dhh1g15@soton.ac.uk
 
 Description:
 Header file for the cpu containing variables.
+To enable debug mode, uncomment line 17 to define debug.
 */
 //////////////////////////////////////////////////////////////////
+
+//Control for Enabling and disabling the debug information displayed on terminal
+//#define debug
+#ifdef debug
+	#define debugMode 1
+#else
+	#define debugMode 0
+#endif
 
 #include "decoder.cpp"
 #include "alu.cpp"

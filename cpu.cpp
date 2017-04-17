@@ -38,19 +38,32 @@ int main()
 	PC pc;
 	MEMORY memory;
 
-	cout << "========================================================" << endl;
+	cout << "View results in the generated text file - 'DataLogger.txt'." << endl;
+	cout << "Alternatively enable the debug mode in 'cpu.h'." << endl;
+
+	if(debugMode)
+	{
+		cout << endl << "========================================================" << endl;
+		cout << "DEBUG MODE STARTED" << endl;
+		cout << "========================================================" << endl;
+	}
+	
 	//Reading data from external file into memory
 	ifstream file;
 	file.open("InputData.txt");
 	if(!file)
 	{
+		if(debugMode)
+		{
 		cout << endl << "ERROR! data.txt couldn't be opened!" << endl;
 		cout << "Exiting Program" << endl << endl;
+		}
 		return -1;
 	}
 	else
 	{
-		cout << "Reading from file..." << endl;
+		if(debugMode)
+			cout << "Reading from file..." << endl;
 	}
 
 	for(noOfInstructions=0; !file.eof(); noOfInstructions++)
@@ -59,13 +72,17 @@ int main()
 		memory.memWrite(noOfInstructions, tempData);
 	}
 	file.close();
-	cout << "Data read. Preparing..." << endl << endl;
+
+	if(debugMode)
+		cout << "Data read. Preparing..." << endl << endl;
 
 
 	//Reset PC
-	cout << "Resetting PC" << endl;
+	if(debugMode)
+		cout << "Resetting PC" << endl;
 	pc.resetPC();
-	cout << "PC is now reset = " << pc.getPC() << endl << endl;
+	if(debugMode)
+		cout << "PC is now reset = " << pc.getPC() << endl << endl;
 
 	//Start up the Data-logger
 	ofstream dataLog;
@@ -79,39 +96,51 @@ int main()
 	while(pc.getPC()<noOfInstructions)
 	{
 		//Print current state of Program Counter
-		cout << "PC = " << pc.getPC() << endl << endl;
+		if(debugMode)
+			cout << "PC = " << pc.getPC() << endl << endl;
 
 		//FETCH - Fetches instruction from Memory & increments PC
-		cout << "Fetching from memory..." << endl;
+		if(debugMode)
+			cout << "Fetching from memory..." << endl;
 		decoder.setDataFromMem(memory.getReg(pc.getPC()));
 		pc.incPC();
-		cout << "Fetch completed" << endl << endl;
+		if(debugMode)
+			cout << "Fetch completed" << endl << endl;
 
 		//DECODE - Decodes Instruction
-		cout << "Decoding..." << endl;
+		if(debugMode)
+			cout << "Decoding..." << endl;
 	 	decoder.runDecoder();
-		cout << "Decoder has finished" << endl << endl;
+	 	if(debugMode)
+			cout << "Decoder has finished" << endl << endl;
 
 		//EXECUTE - Executes ALU instruction
-		cout << "Executing the ALU command..." << endl;
+		if(debugMode)
+			cout << "Executing the ALU command..." << endl;
 		alu.setInputA(decoder.getOperandA());
 	 	alu.setInputB(decoder.getOperandB());
 	 	alu.setInstruction(decoder.getIR());
 	 	alu.runALU();
-	 	cout << "ALU has finished" << endl << endl;
+	 	if(debugMode)
+	 		cout << "ALU has finished" << endl << endl;
 
 	 	//Stores ALU result in ACC
-	 	cout << "Accumulator ready to receive..." << endl;
+	 	if(debugMode)
+	 		cout << "Accumulator ready to receive..." << endl;
 	 	accumulator.setAcc(alu.getResult());
 	 	//cout << accumulator.getAcc() << endl; 
-	 	cout << "Accumulator has finished" << endl << endl;
+	 	if(debugMode)
+	 		cout << "Accumulator has finished" << endl << endl;
 
 	 	//WRITE-BACK - Returns ACC to Memory where it came from
 	 	returnToMem = blank + accumulator.getAcc(); //converts to 10bits with 4LSB being the result
 	 	memory.memWrite(pc.getPC()-1, returnToMem); //result stored where from @ start
-	 	cout << "Writing to memory..." << endl;
-	 	cout << "The result read back from memory: " << memory.getReg(pc.getPC()-1) << endl;
-	 	cout << "________________________________________________________" << endl;
+	 	if(debugMode)
+	 	{
+		 	cout << "Writing to memory..." << endl;
+		 	cout << "The result read back from memory: " << memory.getReg(pc.getPC()-1) << endl;
+		 	cout << "________________________________________________________" << endl;
+	 	}
 
 	 	//Data Logger
 	 	dataLog << "PC          : " << pc.getPC()-1 << endl;
@@ -133,7 +162,11 @@ int main()
  	dataLog << "System has Finished.";
  	dataLog.close();
 
- 	cout << "System Has Finished Executing All Instructions" << endl;
- 	cout << "========================================================" << endl;
+ 	if(debugMode)
+ 	{
+ 		cout << "System Has Finished Executing All Instructions" << endl;
+ 		cout << "========================================================" << endl;	
+ 	}
+ 	
  	return 0;
 }

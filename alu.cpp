@@ -85,17 +85,24 @@ void ALU::calculate()	//carry out the ALU operation
 
 void ALU::runALU()
 {
-	cout << "A Value is: " << getInputA() << endl;
-	cout << "B Value is: " << getInputB() << endl;
+	if(debugMode)
+	{
+		cout << "A Value is: " << getInputA() << endl;
+		cout << "B Value is: " << getInputB() << endl;
+	}
 
 	calculate(); //Runs the ALU to find answer
 	if(overflow)
 	{
-		cout << "WARNING! Overflow has occured in the ALU" << endl;
-		cout << "The INCORRECT answer is: " << getResult() << endl;
+		if(debugMode)
+		{
+			cout << "WARNING! Overflow has occured in the ALU" << endl;
+			cout << "The INCORRECT answer is: " << getResult() << endl;
+		}
 	}
 	else
 	{
-		cout << "ALU output: " << getResult() << endl;
+		if(debugMode)
+			cout << "ALU output: " << getResult() << endl;
 	}
 }

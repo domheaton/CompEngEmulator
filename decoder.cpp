@@ -21,19 +21,22 @@ Data packages are in the following form:
 void DECODER::setIR(const string & dataFromMem)
 {
 	toIR = dataFromMem.substr(0,2);
-	cout << "Instruction: " << toIR << endl;
+	if(debugMode)
+		cout << "Instruction: " << toIR << endl;
 }
 
 void DECODER::setOperandA(const string & dataFromMem)
 {
 	operandA = dataFromMem.substr(2,4);
-	cout << "Input A: " << operandA << endl;
+	if(debugMode)
+		cout << "Input A: " << operandA << endl;
 }
 
 void DECODER::setOperandB(const string & dataFromMem)
 {
 	operandB = dataFromMem.substr(6,4);
-	cout << "Input B: " << operandB << endl;
+	if(debugMode)
+		cout << "Input B: " << operandB << endl;
 }
 
 void DECODER::setDataFromMem(const string & data)
